@@ -2,6 +2,7 @@ package com.example.Vaccination_booking_system.service;
 
 import com.example.Vaccination_booking_system.dto.requestDto.AddPersonRequestDto;
 import com.example.Vaccination_booking_system.dto.responseDto.AddPersonResponseDto;
+import com.example.Vaccination_booking_system.exception.PersonNotFound;
 import com.example.Vaccination_booking_system.model.Person;
 import com.example.Vaccination_booking_system.repository.PersonRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,5 +25,15 @@ public class PersonService {
         addPersonResponseDto.setName(person.getName());
         addPersonResponseDto.setMessage("added susseccfully");
         return  addPersonResponseDto;
+    }
+
+    public void updateEmail(String oldEmail,String newEmail) {
+        Person person = personRepository.findByEmail(oldEmail);
+        if(person==null){
+            throw new PersonNotFound("Person with "+ oldEmail +" not found");
+        }
+
+        person.setEmail(newEmail);
+        personRepository.save(person);
     }
 }

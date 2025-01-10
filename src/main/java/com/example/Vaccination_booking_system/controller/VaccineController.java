@@ -26,4 +26,13 @@ public class VaccineController {
         }
 
     }
+
+    @PostMapping("/second_dose")
+    public ResponseEntity secondDose(@RequestParam int id){
+        try{
+            return new ResponseEntity(vaccineService.addSecondDose(id),HttpStatus.CREATED);
+        }catch (Exception e){
+            return new ResponseEntity<>(e.getMessage(),HttpStatus.BAD_REQUEST);
+        }
+    }
 }
