@@ -17,7 +17,8 @@ public class VaccinationCenter {
     @Id
     @GeneratedValue(strategy= GenerationType.IDENTITY)
     int id;
-
+    String name;
+    String centerId;
     @Enumerated(EnumType.STRING)
     CenterType centerType;
 

@@ -5,6 +5,9 @@ import jakarta.persistence.*;
 import lombok.*;
 import lombok.experimental.FieldDefaults;
 
+import java.util.ArrayList;
+import java.util.List;
+
 
 @Entity
 @Getter
@@ -27,5 +30,8 @@ public class Doctor {
     @ManyToOne
     @JoinColumn
     VaccinationCenter vaccinationCenter;
+
+    @OneToMany(mappedBy="doctor",cascade = CascadeType.ALL)
+    List<Appointment> appointment=new ArrayList<>();
 
 }

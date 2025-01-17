@@ -1,10 +1,12 @@
 package com.example.Vaccination_booking_system.model;
 
 import com.example.Vaccination_booking_system.Enum.Gender;
+import com.example.Vaccination_booking_system.service.PersonService;
 import jakarta.persistence.*;
 import lombok.*;
 import lombok.experimental.FieldDefaults;
 
+import java.util.ArrayList;
 import java.util.List;
 
 
@@ -36,4 +38,7 @@ public class Person {
 
     @OneToOne(mappedBy="person",cascade = CascadeType.ALL)
     Certificate certificate;
+
+    @OneToMany(mappedBy="person",cascade = CascadeType.ALL)
+    List <Appointment> appointment=new ArrayList<>();
 }
